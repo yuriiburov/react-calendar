@@ -1,12 +1,17 @@
 import React from 'react';
 
-import { days } from '../../utils/dateUtils.js';
+import { days, isCurrentDay } from '../../utils/dateUtils.js';
 
 const Navigation = ({ weekDates }) => {
   return (
     <header className="calendar__header">
-      {weekDates.map((dayDate) => (
-        <div className="calendar__day-label day-label">
+      {weekDates.map((dayDate, index) => (
+        <div
+          className={`calendar__day-label day-label${
+            isCurrentDay(dayDate) ? ' current-day' : ''
+          }`}
+          key={index}
+        >
           <span className="day-label__day-name">{days[dayDate.getDay()]}</span>
           <span className="day-label__day-number">{dayDate.getDate()}</span>
         </div>

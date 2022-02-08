@@ -1,11 +1,18 @@
 .button {
   height: 40px;
-  border-radius: 8px;
   border: 1px solid #ccc;
   outline: none;
   cursor: pointer;
   font-size: 16px;
   font-weight: 500;
+  background-color: #fff;
+  -webkit-box-shadow: -1px 1px 10px 0px rgba(34, 60, 80, 0.18);
+  -moz-box-shadow: -1px 1px 10px 0px rgba(34, 60, 80, 0.18);
+  box-shadow: -1px 1px 10px 0px rgba(34, 60, 80, 0.18);
+
+  &:hover {
+    background-color: #66cdaa96;
+  }
 }
 
 .icon-button {

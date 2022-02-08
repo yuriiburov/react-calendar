@@ -7,6 +7,11 @@
 
 .create-event-btn {
   padding: 0 16px;
+  border-radius: 50px;
+
+  &:hover &__icon {
+    animation: spin 0.5s ease-out;
+  }
 
   &__icon {
     margin-right: 8px;
@@ -17,6 +22,7 @@
   &__today-btn {
     margin-left: 32px;
     padding: 0 16px;
+    border-radius: 4px;
   }
 
   &__nav-icon {
@@ -26,5 +32,15 @@
 
   &__displayed-month {
     margin-left: 10px;
+  }
+}
+
+.icon-button > .fas:hover {
+  color: #66cdaa96;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(180deg);
   }
 }

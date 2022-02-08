@@ -45,3 +45,17 @@ export const months = [
   'November',
   'December',
 ];
+
+//
+
+export const isCurrentDay = (date) => {
+  const currentDate = new Date();
+  const currentYear = currentDate.getFullYear();
+  const currentMonth = currentDate.getMonth();
+  const currentDay = currentDate.getDate();
+  const year = date.getFullYear();
+  const month = date.getMonth();
+  const day = date.getDate();
+
+  return year === currentYear && month === currentMonth && day === currentDay;
+};
