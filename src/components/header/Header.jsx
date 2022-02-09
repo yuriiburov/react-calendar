@@ -1,8 +1,37 @@
 import React from 'react';
-import { months } from '../../utils/dateUtils';
+import { months, getWeekStartDate } from '../../utils/dateUtils';
 import './header.scss';
 
-const Header = ({ weekStart, prevWeek, nextWeek, showCurrentWeek }) => {
+const Header = ({
+  weekStart,
+  prevWeek,
+  nextWeek,
+  showCurrentWeek,
+  currentMonth,
+}) => {
+  const showMonth = () => {
+    if (currentMonth === null) {
+      return months[getWeekStartDate(weekStart).getMonth()];
+    }
+
+    if (
+      getWeekStartDate(weekStart).getMonth() < currentMonth ||
+      currentMonth === 0
+    ) {
+      return (
+        months[getWeekStartDate(weekStart).getMonth()] +
+        ' - ' +
+        months[currentMonth]
+      );
+    } else if (getWeekStartDate(weekStart).getMonth() > currentMonth) {
+      return (
+        months[currentMonth] +
+        ' - ' +
+        months[getWeekStartDate(weekStart).getMonth()]
+      );
+    }
+  };
+
   return (
     <header className="header">
       <button className="button create-event-btn">
@@ -21,9 +50,7 @@ const Header = ({ weekStart, prevWeek, nextWeek, showCurrentWeek }) => {
         <button className="icon-button navigation__nav-icon" onClick={nextWeek}>
           <i className="fas fa-chevron-right"></i>
         </button>
-        <span className="navigation__displayed-month">
-          {months[weekStart.getMonth()]}
-        </span>
+        <span className="navigation__displayed-month">{showMonth()}</span>
       </div>
     </header>
   );

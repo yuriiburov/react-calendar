@@ -59,15 +59,3 @@ export const isCurrentDay = (date) => {
 
   return year === currentYear && month === currentMonth && day === currentDay;
 };
-
-export const getWeekLastDate = (date) => {
-  const dateCopy = new Date(date);
-  const dayOfWeek = dateCopy.getDay();
-  const difference =
-    dayOfWeek === 0
-      ? +6 // for Monday
-      : 1 + dayOfWeek;
-
-  const sunday = new Date(dateCopy.setDate(date.getDate() + difference));
-  return new Date(sunday.getFullYear(), sunday.getMonth(), sunday.getDate());
-};

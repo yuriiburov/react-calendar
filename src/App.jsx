@@ -8,6 +8,7 @@ import './common.scss';
 
 const App = () => {
   const [weekStartDate, setWeekStartDate] = useState(new Date());
+  const [currentMonth, setCurrentMonth] = useState(null);
   const weekDates = generateWeekRange(getWeekStartDate(weekStartDate));
 
   const handleNextWeek = () => {
@@ -26,6 +27,14 @@ const App = () => {
     setWeekStartDate(new Date());
   };
 
+  const isAnotherMonth = (dayDate) => {
+    if (dayDate.getMonth() !== getWeekStartDate(weekStartDate).getMonth()) {
+      setCurrentMonth(dayDate.getMonth());
+    } else {
+      setCurrentMonth(null);
+    }
+  };
+
   return (
     <>
       <Header
@@ -33,8 +42,13 @@ const App = () => {
         prevWeek={handlePrevWeek}
         nextWeek={handleNextWeek}
         showCurrentWeek={onShowCurrentWeek}
+        currentMonth={currentMonth}
       />
-      <Calendar weekDates={weekDates} lastDayOfTheWeek={getWeekLastDate} />
+      <Calendar
+        weekDates={weekDates}
+        weekStartDate={weekStartDate}
+        isAnotherMonth={isAnotherMonth}
+      />
     </>
   );
 };
