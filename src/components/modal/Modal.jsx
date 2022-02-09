@@ -2,12 +2,19 @@ import React from 'react';
 
 import './modal.scss';
 
-const Modal = () => {
+const Modal = ({
+  showModalWindow,
+  handleTimeChangeFrom,
+  handleTimeChangeTo,
+  handleDateChange,
+}) => {
   return (
     <div className="modal overlay">
       <div className="modal__content">
         <div className="create-event">
-          <button className="create-event__close-btn">+</button>
+          <button className="create-event__close-btn" onClick={showModalWindow}>
+            +
+          </button>
           <form className="event-form">
             <input
               type="text"
@@ -16,15 +23,25 @@ const Modal = () => {
               className="event-form__field"
             />
             <div className="event-form__time">
-              <input type="date" name="date" className="event-form__field" />
+              <input
+                type="date"
+                name="date"
+                className="event-form__field"
+                onChange={handleDateChange}
+              />
               <input
                 type="time"
                 name="startTime"
                 className="event-form__field"
-                onChange={this.handleChange}
+                onChange={handleTimeChangeFrom}
               />
               <span>-</span>
-              <input type="time" name="endTime" className="event-form__field" />
+              <input
+                type="time"
+                name="endTime"
+                className="event-form__field"
+                onChange={handleTimeChangeTo}
+              />
             </div>
             <textarea
               name="description"

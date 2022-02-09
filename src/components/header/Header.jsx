@@ -8,6 +8,7 @@ const Header = ({
   nextWeek,
   showCurrentWeek,
   currentMonth,
+  showModalWindow,
 }) => {
   const showMonth = () => {
     if (currentMonth === null) {
@@ -34,7 +35,7 @@ const Header = ({
 
   return (
     <header className="header">
-      <button className="button create-event-btn">
+      <button className="button create-event-btn" onClick={showModalWindow}>
         <i className="fas fa-plus create-event-btn__icon"></i>Create
       </button>
       <div className="navigation">
