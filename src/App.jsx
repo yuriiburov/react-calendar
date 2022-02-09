@@ -22,14 +22,19 @@ const App = () => {
     );
   };
 
+  const onShowCurrentWeek = () => {
+    setWeekStartDate(new Date());
+  };
+
   return (
     <>
       <Header
         weekStart={weekStartDate}
         prevWeek={handlePrevWeek}
         nextWeek={handleNextWeek}
+        showCurrentWeek={onShowCurrentWeek}
       />
-      <Calendar weekDates={weekDates} />
+      <Calendar weekDates={weekDates} lastDayOfTheWeek={getWeekLastDate} />
     </>
   );
 };
