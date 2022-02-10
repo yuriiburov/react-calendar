@@ -5,6 +5,8 @@ import Modal from './components/modal/Modal.jsx';
 
 import { getWeekStartDate, generateWeekRange } from '../src/utils/dateUtils.js';
 
+import events from './gateway/events.js';
+
 import './common.scss';
 
 const App = () => {
@@ -13,6 +15,11 @@ const App = () => {
   const [currentMonth, setCurrentMonth] = useState(null);
   const [isShowModal, setIsShowModal] = useState(false);
   const [modalData, setModalData] = useState(null);
+  const [titleText, setTitleText] = useState('');
+  const [modalDateTime, setModalDateTime] = useState('');
+  const [modalTimeFrom, setModalTimeFrom] = useState('');
+  const [modalTimeTo, setModalTimeTo] = useState('');
+  const [descriptionText, setDescriptionText] = useState('');
 
   //
   const weekDates = generateWeekRange(getWeekStartDate(weekStartDate));
@@ -50,17 +57,45 @@ const App = () => {
   };
 
   // work with event data
-  const handleTimeChangeFrom = (e) => {
-    console.log('from ' + e.target.value, typeof e.target.value);
-  };
-
-  const handleTimeChangeTo = (e) => {
-    console.log('to ' + e.target.value, typeof e.target.value);
+  const handleTitleChange = (e) => {
+    setTitleText(e.target.value);
   };
 
   const handleDateChange = (e) => {
-    console.log('date ' + e.target.value, new Date(e.target.value));
+    setModalDateTime(e.target.value);
   };
+
+  const handleTimeChangeFrom = (e) => {
+    setModalTimeFrom(e.target.value);
+  };
+
+  const handleTimeChangeTo = (e) => {
+    setModalTimeTo(e.target.value);
+  };
+
+  const handleDescriptionChange = (e) => {
+    setDescriptionText(e.target.value);
+  };
+
+  const handleEventSubmit = (e) => {
+    e.preventDefault();
+    setModalData({
+      id: Math.floor((1 + Math.random()) * 0x10000),
+      title: titleText,
+      description: descriptionText,
+      dateFrom: new Date(`${modalDateTime} ${modalTimeFrom}`),
+      dateTo: new Date(`${modalDateTime} ${modalTimeTo}`),
+    });
+  };
+
+  useEffect(() => {
+    handleEventSubmit;
+    return () => {
+      if (modalData !== null) {
+        events.push(modalData);
+      }
+    };
+  });
 
   return (
     <>
@@ -74,9 +109,17 @@ const App = () => {
       />
       {isShowModal && (
         <Modal
-          handleTimeChangeFrom={handleTimeChangeFrom}
-          handleTimeChangeTo={handleTimeChangeTo}
+          handleTitleChange={handleTitleChange}
+          valueTitle={titleText}
           handleDateChange={handleDateChange}
+          valueDate={modalDateTime}
+          handleTimeChangeFrom={handleTimeChangeFrom}
+          valueFrom={modalTimeFrom}
+          handleTimeChangeTo={handleTimeChangeTo}
+          valueTo={modalTimeTo}
+          handleDescriptionChange={handleDescriptionChange}
+          valueDescription={descriptionText}
+          handleSubmit={handleEventSubmit}
           showModalWindow={showModalWindow}
         />
       )}
