@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+import events from '../../gateway/events';
 
 import './event.scss';
 

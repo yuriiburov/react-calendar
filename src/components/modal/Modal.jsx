@@ -1,21 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+
+import events from '../../gateway/events';
 
 import './modal.scss';
 
-const Modal = ({
-  handleTitleChange,
-  valueTitle,
-  handleDateChange,
-  valueDate,
-  handleTimeChangeFrom,
-  valueFrom,
-  handleTimeChangeTo,
-  valueTo,
-  handleDescriptionChange,
-  valueDescription,
-  handleSubmit,
-  showModalWindow,
-}) => {
+const Modal = ({ showModalWindow }) => {
+  // state
+  const [modalData, setModalData] = useState(null);
+  const [titleText, setTitleText] = useState('');
+  const [modalDateTime, setModalDateTime] = useState('');
+  const [modalTimeFrom, setModalTimeFrom] = useState('');
+  const [modalTimeTo, setModalTimeTo] = useState('');
+  const [descriptionText, setDescriptionText] = useState('');
+
+  // work with event data
+  const handleEventSubmit = (e) => {
+    e.preventDefault();
+    setModalData({
+      id: Math.floor((1 + Math.random()) * 0x10000),
+      title: titleText,
+      description: descriptionText,
+      dateFrom: new Date(`${modalDateTime} ${modalTimeFrom}`),
+      dateTo: new Date(`${modalDateTime} ${modalTimeTo}`),
+    });
+  };
+
+  useEffect(() => {
+    handleEventSubmit;
+    return () => {
+      if (modalData !== null) {
+        events.push(modalData);
+      }
+    };
+  });
+
   return (
     <div className="modal overlay">
       <div className="modal__content">
@@ -23,45 +41,45 @@ const Modal = ({
           <button className="create-event__close-btn" onClick={showModalWindow}>
             +
           </button>
-          <form className="event-form" onSubmit={handleSubmit}>
+          <form className="event-form" onSubmit={handleEventSubmit}>
             <input
               type="text"
               name="title"
               placeholder="Title"
               className="event-form__field"
-              onChange={handleTitleChange}
-              value={valueTitle}
+              onChange={(e) => setTitleText(e.target.value)}
+              value={titleText}
             />
             <div className="event-form__time">
               <input
                 type="date"
                 name="date"
                 className="event-form__field"
-                onChange={handleDateChange}
-                value={valueDate}
+                onChange={(e) => setModalDateTime(e.target.value)}
+                value={modalDateTime}
               />
               <input
                 type="time"
                 name="startTime"
                 className="event-form__field"
-                onChange={handleTimeChangeFrom}
-                value={valueFrom}
+                onChange={(e) => setModalTimeFrom(e.target.value)}
+                value={modalTimeFrom}
               />
               <span>-</span>
               <input
                 type="time"
                 name="endTime"
                 className="event-form__field"
-                onChange={handleTimeChangeTo}
-                value={valueTo}
+                onChange={(e) => setModalTimeTo(e.target.value)}
+                value={modalTimeTo}
               />
             </div>
             <textarea
               name="description"
               placeholder="Description"
               className="event-form__field"
-              onChange={handleDescriptionChange}
-              value={valueDescription}
+              onChange={(e) => setDescriptionText(e.target.value)}
+              value={descriptionText}
             />
             <button type="submit" className="event-form__submit-btn">
               Create
