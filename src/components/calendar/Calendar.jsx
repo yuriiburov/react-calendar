@@ -11,13 +11,11 @@ const Calendar = ({ weekDates, weekStartDate, isAnotherMonth }) => {
   const [eventsList, setEventsList] = useState(events);
 
   const handleEventRemove = (e) => {
-    events.forEach(({ id }) => {
-      if (id === Number(e.target.attributes[1].nodeValue)) {
-        // setEventsList(events.splice(id - 1, 1)); // update, bute value doesn't true
-        events.splice(id - 1, 1);
-        setEventsList(events); // doesn't update
-      }
-    });
+    setEventsList(
+      eventsList.filter(
+        ({ id }) => id !== Number(e.target.attributes[1].nodeValue)
+      )
+    );
   };
 
   return (

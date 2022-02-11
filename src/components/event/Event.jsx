@@ -17,8 +17,12 @@ const Event = ({ id, height, marginTop, title, time, handleEventRemove }) => {
       event-data={id}
       onClick={handleEventRemove}
     >
-      <div className="event__title">{title}</div>
-      <div className="event__time">{time}</div>
+      <div className="event__title" event-data={id}>
+        {title}
+      </div>
+      <div className="event__time" event-data={id}>
+        {time}
+      </div>
     </div>
   );
 };
