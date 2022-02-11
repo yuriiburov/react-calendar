@@ -8,15 +8,12 @@ export const createEvent = (eventData) =>
   });
 
 export const fetchEventsList = () =>
-  fetch(baseUrl).then((res) => {
-    if (res.ok) {
-      return res.json();
+  fetch(baseUrl).then((response) => {
+    if (!response.ok) {
+      alert("Internal Server Error. Can't display events");
     }
+    return response.json();
   });
 
 export const deleteEvent = (eventId) =>
-  fetch(`${baseUrl}/${eventId}`, { method: 'DELETE' }).then((response) => {
-    if (!response.ok) {
-      throw new Error('Failed to delete task');
-    }
-  });
+  fetch(`${baseUrl}/${eventId}`, { method: 'DELETE' });

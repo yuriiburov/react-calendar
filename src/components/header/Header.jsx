@@ -13,9 +13,7 @@ const Header = ({
   const showMonth = () => {
     if (currentMonth === null) {
       return months[getWeekStartDate(weekStart).getMonth()];
-    }
-
-    if (
+    } else if (
       getWeekStartDate(weekStart).getMonth() < currentMonth ||
       currentMonth === 0
     ) {

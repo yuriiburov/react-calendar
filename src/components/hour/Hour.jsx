@@ -1,11 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import Event from '../event/Event';
 import { formatMins } from '../../../src/utils/dateUtils.js';
 
-// import events from '../../gateway/events';
-
-const Hour = ({ dataHour, hourEvents, eventsList, handleEventRemove }) => {
+const Hour = ({ dataHour, hourEvents, handleEventRemove }) => {
   return (
     <div className="calendar__time-slot" data-time={dataHour + 1}>
       {/* if no events in the current hour nothing will render here */}
@@ -16,13 +14,6 @@ const Hour = ({ dataHour, hourEvents, eventsList, handleEventRemove }) => {
         const eventEnd = `${new Date(dateTo).getHours()}:${formatMins(
           new Date(dateTo).getMinutes()
         )}`;
-
-        // const handleClick = (e) => {
-        //   if (Number(e.target.attributes[1].nodeValue) === id) {
-        //     events.splice(id - 1, 1);
-        //     setEvents(events);
-        //   }
-        // };
 
         return (
           <Event

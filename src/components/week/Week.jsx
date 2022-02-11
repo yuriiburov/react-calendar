@@ -24,7 +24,6 @@ const Week = ({ weekDates, eventsList, handleEventRemove }) => {
             yearOfTheDay={dayStart.getFullYear()}
             monthOfTheDay={dayStart.getMonth()}
             dayEvents={dayEvents}
-            eventsList={eventsList}
             handleEventRemove={handleEventRemove}
           />
         );

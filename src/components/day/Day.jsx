@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Hour from '../hour/Hour';
 
 import './day.scss';
@@ -8,7 +8,6 @@ const Day = ({
   dayEvents,
   monthOfTheDay,
   yearOfTheDay,
-  eventsList,
   handleEventRemove,
 }) => {
   const redLine = () => {
@@ -48,8 +47,6 @@ const Day = ({
             key={dataDay + hour}
             dataHour={hour}
             hourEvents={hourEvents}
-            dayEvents={dayEvents}
-            eventsList={eventsList}
             handleEventRemove={handleEventRemove}
           />
         );

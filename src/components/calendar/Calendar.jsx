@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React from 'react';
 
 import Navigation from './../navigation/Navigation';
 import Week from '../week/Week';
@@ -8,25 +8,13 @@ import './calendar.scss';
 
 const Calendar = ({
   weekDates,
-  weekStartDate,
   isAnotherMonth,
   eventsList,
   handleEventRemove,
 }) => {
-  // const handleEventRemove = (e) =>
-  //   setEventsList(
-  //     eventsList.filter(
-  //       ({ id }) => id !== Number(e.target.attributes[1].nodeValue)
-  //     )
-  //   );
-
   return (
     <section className="calendar">
-      <Navigation
-        weekDates={weekDates}
-        weekStartDate={weekStartDate}
-        isAnotherMonth={isAnotherMonth}
-      />
+      <Navigation weekDates={weekDates} isAnotherMonth={isAnotherMonth} />
       <div className="calendar__body">
         <div className="calendar__week-container">
           <Sidebar />

@@ -6,6 +6,7 @@
   border-radius: 8px;
   padding: 8px;
   color: #333;
+  overflow-y: scroll;
 
   &__title {
     width: 100%;
@@ -18,11 +19,11 @@
   &:hover {
     font-weight: bold;
     color: #fff;
+    cursor: pointer;
     background-color: red;
   }
 }
 
 .delete-event-btn {
-  cursor: pointer;
   border: none;
 }

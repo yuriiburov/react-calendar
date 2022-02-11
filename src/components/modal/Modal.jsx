@@ -1,30 +1,14 @@
-import React, { useEffect, useState } from 'react';
-
-import events from '../../gateway/events';
-
-// import { createEvent } from '../../gateway/eventsGateway';
+import React, { useState } from 'react';
 
 import './modal.scss';
 
 const Modal = ({ showModalWindow, newEvent }) => {
   // state
-  const [modalData, setModalData] = useState(null);
   const [titleText, setTitleText] = useState('');
   const [modalDateTime, setModalDateTime] = useState('');
   const [modalTimeFrom, setModalTimeFrom] = useState('');
   const [modalTimeTo, setModalTimeTo] = useState('');
   const [descriptionText, setDescriptionText] = useState('');
-
-  // work with event data
-  // const handleEventSubmit = (e) => {
-  //   e.preventDefault();
-  //   setModalData({
-  //     title: titleText,
-  //     description: descriptionText,
-  //     dateFrom: new Date(`${modalDateTime} ${modalTimeFrom}`),
-  //     dateTo: new Date(`${modalDateTime} ${modalTimeTo}`),
-  //   });
-  // };
 
   const handleEventSubmit = (e) => {
     e.preventDefault();
@@ -34,16 +18,8 @@ const Modal = ({ showModalWindow, newEvent }) => {
       dateFrom: new Date(`${modalDateTime} ${modalTimeFrom}`),
       dateTo: new Date(`${modalDateTime} ${modalTimeTo}`),
     });
+    showModalWindow();
   };
-
-  // useEffect(() => {
-  //   handleEventSubmit;
-  //   return () => {
-  //     if (modalData !== null) {
-  //       events.push(modalData);
-  //     }
-  //   };
-  // });
 
   return (
     <div className="modal overlay">

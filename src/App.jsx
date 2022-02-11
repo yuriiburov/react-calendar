@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import Header from './components/header/Header.jsx';
 import Calendar from './components/calendar/Calendar.jsx';
 import Modal from './components/modal/Modal.jsx';
+
 import {
   fetchEventsList,
   createEvent,
   deleteEvent,
 } from './gateway/eventsGateway.js';
-
 import { getWeekStartDate, generateWeekRange } from '../src/utils/dateUtils.js';
 
 import './common.scss';
@@ -103,7 +103,6 @@ const App = () => {
       )}
       <Calendar
         weekDates={weekDates}
-        weekStartDate={weekStartDate}
         isAnotherMonth={isAnotherMonth}
         eventsList={eventsList}
         handleEventRemove={handleEventRemove}
