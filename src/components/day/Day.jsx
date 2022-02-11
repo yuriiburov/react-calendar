@@ -9,7 +9,7 @@ const Day = ({
   monthOfTheDay,
   yearOfTheDay,
   events,
-  setEvents,
+  handleEventRemove,
 }) => {
   const redLine = () => {
     if (
@@ -50,7 +50,7 @@ const Day = ({
             hourEvents={hourEvents}
             dayEvents={dayEvents}
             events={events}
-            setEvents={setEvents}
+            handleEventRemove={handleEventRemove}
           />
         );
       })}

@@ -8,10 +8,16 @@ import events from '../../gateway/events';
 import './calendar.scss';
 
 const Calendar = ({ weekDates, weekStartDate, isAnotherMonth }) => {
-  const [eventses, setEventses] = useState(events);
+  const [eventsList, setEventsList] = useState(events);
 
-  const handleEventsChange = (el) => {
-    setEventses(el);
+  const handleEventRemove = (e) => {
+    events.forEach(({ id }) => {
+      if (id === Number(e.target.attributes[1].nodeValue)) {
+        // setEventsList(events.splice(id - 1, 1)); // update, bute value doesn't true
+        events.splice(id - 1, 1);
+        setEventsList(events); // doesn't update
+      }
+    });
   };
 
   return (
@@ -26,8 +32,8 @@ const Calendar = ({ weekDates, weekStartDate, isAnotherMonth }) => {
           <Sidebar />
           <Week
             weekDates={weekDates}
-            events={eventses}
-            setEvents={handleEventsChange}
+            events={eventsList}
+            handleEventRemove={handleEventRemove}
           />
         </div>
       </div>
