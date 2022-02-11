@@ -3,7 +3,7 @@ import Day from '../day/Day';
 
 import './week.scss';
 
-const Week = ({ weekDates, events, handleEventRemove }) => {
+const Week = ({ weekDates, eventsList, handleEventRemove }) => {
   return (
     <div className="calendar__week">
       {weekDates.map((dayStart) => {
@@ -12,8 +12,9 @@ const Week = ({ weekDates, events, handleEventRemove }) => {
         );
 
         //getting all events from the day we will render
-        const dayEvents = events.filter(
-          (event) => event.dateFrom > dayStart && event.dateTo < dayEnd
+        const dayEvents = eventsList.filter(
+          ({ dateFrom, dateTo }) =>
+            new Date(dateFrom) >= dayStart && new Date(dateTo) <= dayEnd
         );
 
         return (
@@ -23,7 +24,7 @@ const Week = ({ weekDates, events, handleEventRemove }) => {
             yearOfTheDay={dayStart.getFullYear()}
             monthOfTheDay={dayStart.getMonth()}
             dayEvents={dayEvents}
-            events={events}
+            eventsList={eventsList}
             handleEventRemove={handleEventRemove}
           />
         );

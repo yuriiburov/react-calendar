@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 
-import events from '../../gateway/events';
-
 import './event.scss';
 
 const Event = ({ id, height, marginTop, title, time, handleEventRemove }) => {

@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 
 import events from '../../gateway/events';
 
+// import { createEvent } from '../../gateway/eventsGateway';
+
 import './modal.scss';
 
-const Modal = ({ showModalWindow }) => {
+const Modal = ({ showModalWindow, newEvent }) => {
   // state
   const [modalData, setModalData] = useState(null);
   const [titleText, setTitleText] = useState('');
@@ -14,10 +16,19 @@ const Modal = ({ showModalWindow }) => {
   const [descriptionText, setDescriptionText] = useState('');
 
   // work with event data
+  // const handleEventSubmit = (e) => {
+  //   e.preventDefault();
+  //   setModalData({
+  //     title: titleText,
+  //     description: descriptionText,
+  //     dateFrom: new Date(`${modalDateTime} ${modalTimeFrom}`),
+  //     dateTo: new Date(`${modalDateTime} ${modalTimeTo}`),
+  //   });
+  // };
+
   const handleEventSubmit = (e) => {
     e.preventDefault();
-    setModalData({
-      id: Math.floor((1 + Math.random()) * 0x10000),
+    newEvent({
       title: titleText,
       description: descriptionText,
       dateFrom: new Date(`${modalDateTime} ${modalTimeFrom}`),
@@ -25,14 +36,14 @@ const Modal = ({ showModalWindow }) => {
     });
   };
 
-  useEffect(() => {
-    handleEventSubmit;
-    return () => {
-      if (modalData !== null) {
-        events.push(modalData);
-      }
-    };
-  });
+  // useEffect(() => {
+  //   handleEventSubmit;
+  //   return () => {
+  //     if (modalData !== null) {
+  //       events.push(modalData);
+  //     }
+  //   };
+  // });
 
   return (
     <div className="modal overlay">
@@ -57,6 +68,7 @@ const Modal = ({ showModalWindow }) => {
                 className="event-form__field"
                 onChange={(e) => setModalDateTime(e.target.value)}
                 value={modalDateTime}
+                required
               />
               <input
                 type="time"
@@ -64,6 +76,7 @@ const Modal = ({ showModalWindow }) => {
                 className="event-form__field"
                 onChange={(e) => setModalTimeFrom(e.target.value)}
                 value={modalTimeFrom}
+                required
               />
               <span>-</span>
               <input
@@ -72,6 +85,7 @@ const Modal = ({ showModalWindow }) => {
                 className="event-form__field"
                 onChange={(e) => setModalTimeTo(e.target.value)}
                 value={modalTimeTo}
+                required
               />
             </div>
             <textarea

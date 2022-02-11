@@ -8,7 +8,7 @@ const Day = ({
   dayEvents,
   monthOfTheDay,
   yearOfTheDay,
-  events,
+  eventsList,
   handleEventRemove,
 }) => {
   const redLine = () => {
@@ -40,7 +40,7 @@ const Day = ({
       {hours.map((hour) => {
         //getting all events from the day we will render
         const hourEvents = dayEvents.filter(
-          (event) => event.dateFrom.getHours() === hour
+          ({ dateFrom }) => new Date(dateFrom).getHours() === hour
         );
 
         return (
@@ -49,7 +49,7 @@ const Day = ({
             dataHour={hour}
             hourEvents={hourEvents}
             dayEvents={dayEvents}
-            events={events}
+            eventsList={eventsList}
             handleEventRemove={handleEventRemove}
           />
         );

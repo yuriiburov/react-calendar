@@ -3,20 +3,22 @@ import React, { Component, useState } from 'react';
 import Navigation from './../navigation/Navigation';
 import Week from '../week/Week';
 import Sidebar from '../sidebar/Sidebar';
-import events from '../../gateway/events';
 
 import './calendar.scss';
 
-const Calendar = ({ weekDates, weekStartDate, isAnotherMonth }) => {
-  const [eventsList, setEventsList] = useState(events);
-
-  const handleEventRemove = (e) => {
-    setEventsList(
-      eventsList.filter(
-        ({ id }) => id !== Number(e.target.attributes[1].nodeValue)
-      )
-    );
-  };
+const Calendar = ({
+  weekDates,
+  weekStartDate,
+  isAnotherMonth,
+  eventsList,
+  handleEventRemove,
+}) => {
+  // const handleEventRemove = (e) =>
+  //   setEventsList(
+  //     eventsList.filter(
+  //       ({ id }) => id !== Number(e.target.attributes[1].nodeValue)
+  //     )
+  //   );
 
   return (
     <section className="calendar">
@@ -30,7 +32,7 @@ const Calendar = ({ weekDates, weekStartDate, isAnotherMonth }) => {
           <Sidebar />
           <Week
             weekDates={weekDates}
-            events={eventsList}
+            eventsList={eventsList}
             handleEventRemove={handleEventRemove}
           />
         </div>
