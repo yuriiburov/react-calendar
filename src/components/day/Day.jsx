@@ -3,7 +3,14 @@ import Hour from '../hour/Hour';
 
 import './day.scss';
 
-const Day = ({ dataDay, dayEvents, monthOfTheDay, yearOfTheDay }) => {
+const Day = ({
+  dataDay,
+  dayEvents,
+  monthOfTheDay,
+  yearOfTheDay,
+  events,
+  setEvents,
+}) => {
   const redLine = () => {
     if (
       dataDay === new Date().getDate() &&
@@ -37,7 +44,14 @@ const Day = ({ dataDay, dayEvents, monthOfTheDay, yearOfTheDay }) => {
         );
 
         return (
-          <Hour key={dataDay + hour} dataHour={hour} hourEvents={hourEvents} />
+          <Hour
+            key={dataDay + hour}
+            dataHour={hour}
+            hourEvents={hourEvents}
+            dayEvents={dayEvents}
+            events={events}
+            setEvents={setEvents}
+          />
         );
       })}
     </div>

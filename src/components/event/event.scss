@@ -1,11 +1,11 @@
 .event {
   position: absolute;
   width: 80%;
-  background-color: cornflowerblue;
+  background-color: #66cdaa;
   z-index: 1;
   border-radius: 8px;
   padding: 8px;
-  color: #fff;
+  color: #333;
 
   &__title {
     width: 100%;
@@ -17,6 +17,7 @@
 
   &:hover {
     font-weight: bold;
+    color: #fff;
     background-color: red;
   }
 }

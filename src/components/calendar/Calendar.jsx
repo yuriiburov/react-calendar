@@ -9,6 +9,11 @@ import './calendar.scss';
 
 const Calendar = ({ weekDates, weekStartDate, isAnotherMonth }) => {
   const [eventses, setEventses] = useState(events);
+
+  const handleEventsChange = (el) => {
+    setEventses(el);
+  };
+
   return (
     <section className="calendar">
       <Navigation
@@ -19,7 +24,11 @@ const Calendar = ({ weekDates, weekStartDate, isAnotherMonth }) => {
       <div className="calendar__body">
         <div className="calendar__week-container">
           <Sidebar />
-          <Week weekDates={weekDates} events={eventses} />
+          <Week
+            weekDates={weekDates}
+            events={eventses}
+            setEvents={handleEventsChange}
+          />
         </div>
       </div>
     </section>

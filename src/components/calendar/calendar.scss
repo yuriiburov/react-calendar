@@ -53,6 +53,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+  background-color: #66cdaa;
   opacity: 0.6;
 
   &__day-name {
@@ -74,4 +75,5 @@
 
 .current-day {
   background-color: #66cdaa;
+  opacity: 1;
 }
