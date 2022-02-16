@@ -1,6 +1,6 @@
 # react-calendar
 
-:arrow_right: [calendar here](https://kind-tereshkova-2d2613.netlify.app/){:target="\_blank" rel="noopener"} :arrow_left:
+:arrow_right:[calendar here](https://kind-tereshkova-2d2613.netlify.app/):arrow_left:
 
 The tech stack is:
 
