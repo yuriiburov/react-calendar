@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 import { days, isCurrentDay } from '../../utils/dateUtils.js';
 
@@ -25,6 +26,11 @@ const Navigation = ({ weekDates, isAnotherMonth }) => {
       })}
     </header>
   );
+};
+
+Navigation.propTypes = {
+  weekDates: PropTypes.array.isRequired,
+  isAnotherMonth: PropTypes.func.isRequired,
 };
 
 export default Navigation;

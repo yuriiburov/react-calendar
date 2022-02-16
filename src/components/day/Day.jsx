@@ -1,20 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import Hour from '../hour/Hour';
 
 import './day.scss';
 
-const Day = ({
-  dataDay,
-  dayEvents,
-  monthOfTheDay,
-  yearOfTheDay,
-  handleEventRemove,
-}) => {
+const Day = ({ dayStart, dataDay, dayEvents, handleEventRemove }) => {
   const redLine = () => {
     if (
       dataDay === new Date().getDate() &&
-      monthOfTheDay === new Date().getMonth() &&
-      yearOfTheDay === new Date().getFullYear()
+      dayStart.getMonth() === new Date().getMonth() &&
+      dayStart.getFullYear() === new Date().getFullYear()
     ) {
       return (
         <span
@@ -53,6 +49,13 @@ const Day = ({
       })}
     </div>
   );
+};
+
+Day.propTypes = {
+  dayStart: PropTypes.instanceOf(Date).isRequired,
+  dataDay: PropTypes.number.isRequired,
+  dayEvents: PropTypes.array.isRequired,
+  handleEventRemove: PropTypes.func.isRequired,
 };
 
 export default Day;

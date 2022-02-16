@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import './event.scss';
 
-const Event = ({ id, height, marginTop, title, time, handleEventRemove }) => {
+const Event = ({ eventData, handleEventRemove }) => {
+  const { id, height, marginTop, title, time } = eventData;
+
   const eventStyle = {
     height,
     marginTop,
@@ -23,6 +26,11 @@ const Event = ({ id, height, marginTop, title, time, handleEventRemove }) => {
       </div>
     </div>
   );
+};
+
+Event.propTypes = {
+  eventData: PropTypes.object.isRequired,
+  handleEventRemove: PropTypes.func.isRequired,
 };
 
 export default Event;

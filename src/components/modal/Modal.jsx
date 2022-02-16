@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import './modal.scss';
 
@@ -79,6 +80,11 @@ const Modal = ({ showModalWindow, newEvent }) => {
       </div>
     </div>
   );
+};
+
+Modal.propTypes = {
+  showModalWindow: PropTypes.func.isRequired,
+  newEvent: PropTypes.func.isRequired,
 };
 
 export default Modal;
