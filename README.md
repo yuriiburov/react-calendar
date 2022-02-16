@@ -1,6 +1,6 @@
 # react-calendar
 
-:arrow_right:[calendar here](https://kind-tereshkova-2d2613.netlify.app/):arrow_left:
+[calendar here](https://kind-tereshkova-2d2613.netlify.app/) :calendar:
 
 The tech stack is:
 
