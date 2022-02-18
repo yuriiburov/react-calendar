@@ -22,6 +22,17 @@ const Modal = ({ showModalWindow, newEvent }) => {
     showModalWindow();
   };
 
+  // opacity for button
+  const checkValid = () => {
+    if (
+      modalDateTime.length !== 10 ||
+      modalTimeFrom.length !== 5 ||
+      modalTimeTo.length !== 5
+    ) {
+      return { opacity: 0.7 };
+    }
+  };
+
   return (
     <div className="modal overlay">
       <div className="modal__content">
@@ -72,7 +83,11 @@ const Modal = ({ showModalWindow, newEvent }) => {
               onChange={(e) => setDescriptionText(e.target.value)}
               value={descriptionText}
             />
-            <button type="submit" className="event-form__submit-btn">
+            <button
+              type="submit"
+              className="event-form__submit-btn"
+              style={checkValid()}
+            >
               Create
             </button>
           </form>
